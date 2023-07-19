@@ -4,6 +4,7 @@ import models.Currency;
 import services.СonverterServices.ConverterService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,20 +20,15 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public List<Currency> addCurrency(int code, String title, List<Currency> currencyList) {
+    public void addCurrency(int code, String title, List<Currency> currencyList) {
         Currency currency = new Currency(code, title);
         currencyList.add(currency);
-        return currencyList;
     }
 
     @Override
-    public Map<String, Double> buyingRate(String title, double course) {
-        return null;
-    }
+    public void exchangeRates(HashMap<String, ArrayList<Double>> rates, String title,
+                              double courseSales, double courseBuying) {
 
-    @Override
-    public Map<String, Double> salesRate(String title, double course) {
-        return null;
     }
 
     @Override

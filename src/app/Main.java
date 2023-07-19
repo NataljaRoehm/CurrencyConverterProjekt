@@ -19,19 +19,22 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<Currency> currencies = new ArrayList<>();
+        Map<String, ArrayList<Double>> exchangeRates = new HashMap<>();
         ConverterService converterService = new ConverterServiceImpl();
         CurrencyService currencyService = new CurrencyServiceImpl(converterService);
-
         System.out.println("=== Конвертор валют v. 0.0.1 ===");
         int command;
         do {
             command = readCommand(scanner);
             switch (command) {
                 case ADD_CURRENCY:
-                    addCurrency(currencies, scanner, currencyService);
+                    addCurrency(currencies, currencyService, scanner);
                     break;
                 case UPDATE_EXCHANGE_RATES:
-                    System.out.println("UPDATE_EXCHANGE_RATES");
+                    updateExchangeRates(exchangeRates,
+                            currencyService,
+                            currencies,
+                            scanner);
                     break;
                 case CURRENCY_CONVERSION:
                     System.out.println("CURRENCY_CONVERSION");
@@ -85,7 +88,8 @@ public class Main {
         System.out.println(EXIT + ". Выход");
     }
 
-    public static void addCurrency(List<Currency> currencyList, Scanner scanner, CurrencyService currencyService) {
+    public static void addCurrency(List<Currency> currencyList, CurrencyService currencyService, Scanner scanner) {
+        System.out.println("Добавление новой валюты:");
         System.out.println("Введите название валюты:");
         String title = scanner.nextLine();
         while (title.isEmpty()) {
@@ -101,5 +105,23 @@ public class Main {
         int code = scanner.nextInt();
         scanner.nextLine();
         currencyService.addCurrency(code, title, currencyList);
+    }
+
+    public static void updateExchangeRates(Map<String, ArrayList<Double>> exchangeRates,
+                                           CurrencyService currencyService,
+                                           List<Currency> currencyList,
+                                           Scanner scanner) {
+        System.out.println("Загрузка курсов валюты:");
+        for (Currency currency : currencyList) {
+            System.out.println("Курсы для исходной валюты " + currency.getTitle() + " :");
+            for (Currency currency1 : currencyList) {
+                if (!currency1.getTitle().equals(currency.getTitle())) {
+                    System.out.println("Курс покупки  " +  currency1.getTitle() +
+                            " за " + currency.getTitle());
+                    System.out.println("Курс продажи  " +  currency1.getTitle() +
+                            " за " + currency.getTitle());
+                }
+            }
+        }
     }
 }
