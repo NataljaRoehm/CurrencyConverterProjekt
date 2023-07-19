@@ -112,14 +112,16 @@ public class Main {
                                            List<Currency> currencyList,
                                            Scanner scanner) {
         System.out.println("Загрузка курсов валюты:");
-        for (Currency currency : currencyList) {
-            System.out.println("Курсы для исходной валюты " + currency.getTitle() + " :");
-            for (Currency currency1 : currencyList) {
-                if (!currency1.getTitle().equals(currency.getTitle())) {
-                    System.out.println("Курс покупки  " +  currency1.getTitle() +
-                            " за " + currency.getTitle());
-                    System.out.println("Курс продажи  " +  currency1.getTitle() +
-                            " за " + currency.getTitle());
+        for (Currency originalCurrency : currencyList) {
+            System.out.println("Курсы для исходной валюты " + originalCurrency.getTitle() + " :");
+            for (Currency currency : currencyList) {
+                if (!currency.getTitle().equals(originalCurrency.getTitle())) {
+                    System.out.println("Курс покупки  " +  currency.getTitle() +
+                            " за " + originalCurrency.getTitle());
+                    System.out.println("Курс продажи  " +  currency.getTitle() +
+                            " за " + originalCurrency.getTitle());
+                    String key = originalCurrency.getTitle() + currency.getTitle();
+                    System.out.println(key);
                 }
             }
         }
