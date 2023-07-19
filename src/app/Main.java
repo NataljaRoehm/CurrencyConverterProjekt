@@ -116,9 +116,10 @@ public class Main {
             System.out.println("Курсы для исходной валюты " + originalCurrency.getTitle() + " :");
             for (Currency currency : currencyList) {
                 if (!currency.getTitle().equals(originalCurrency.getTitle())) {
-                    System.out.println("Курс покупки  " +  currency.getTitle() +
+                    System.out.println("Введите курс покупки  " +  currency.getTitle() +
                             " за " + originalCurrency.getTitle());
-                    System.out.println("Курс продажи  " +  currency.getTitle() +
+
+                    System.out.println("Введите курс продажи  " +  currency.getTitle() +
                             " за " + originalCurrency.getTitle());
                     String key = originalCurrency.getTitle() + currency.getTitle();
                     System.out.println(key);
