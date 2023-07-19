@@ -6,10 +6,7 @@ import services.CurrencyServices.CurrencyServiceImpl;
 import services.СonverterServices.ConverterService;
 import services.СonverterServices.ConverterServiceImpl;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -31,7 +28,7 @@ public class Main {
             command = readCommand(scanner);
             switch (command) {
                 case ADD_CURRENCY:
-                    System.out.println("ADD_CURRENCY");
+                    addCurrency(currencies, scanner, currencyService);
                     break;
                 case UPDATE_EXCHANGE_RATES:
                     System.out.println("UPDATE_EXCHANGE_RATES");
@@ -42,7 +39,6 @@ public class Main {
                 case EXIT:
                     break;
                 default:
-                    // Мы не должны здесь оказаться, `readCommand()` уже всё проверил
                     System.out.println("Некорректная команда: " + command);
                     break;
             }
@@ -56,7 +52,7 @@ public class Main {
             printMenu();
             System.out.print("Выберите команду: ");
             try {
-                command = scanner.nextInt(); // здесь может быть InputMismatchException
+                command = scanner.nextInt();
                 if (!isCommand(command)) {
                     System.out.println("Некорректный номер команды: " + command);
                 }
@@ -87,5 +83,23 @@ public class Main {
         System.out.println(UPDATE_EXCHANGE_RATES + ". Обновить курсы валюты");
         System.out.println(CURRENCY_CONVERSION + ". Конвертировать валюту");
         System.out.println(EXIT + ". Выход");
+    }
+
+    public static void addCurrency(List<Currency> currencyList, Scanner scanner, CurrencyService currencyService) {
+        System.out.println("Введите название валюты:");
+        String title = scanner.nextLine();
+        while (title.isEmpty()) {
+            System.out.print("Название валюты не может быть пустым, введите название: ");
+            title = scanner.nextLine();
+        }
+        System.out.println("Введите код валюты:");
+        while (!scanner.hasNextInt()) {
+            String error = scanner.nextLine();
+            System.out.println("Некорректный ввод, введите число: '" + error + "'");
+            System.out.println("Введите код валюты:");
+        }
+        int code = scanner.nextInt();
+        scanner.nextLine();
+        currencyService.addCurrency(code, title, currencyList);
     }
 }

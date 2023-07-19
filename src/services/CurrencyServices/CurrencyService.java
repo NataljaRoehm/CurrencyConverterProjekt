@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface CurrencyService {
-    List<Currency> addCurrency(String title, int code);
+    List<Currency> addCurrency (int code, String title, List<Currency> currencyList);
 
     Map<String, Double> buyingRate(String title, double course);
 

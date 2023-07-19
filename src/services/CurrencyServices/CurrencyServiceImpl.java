@@ -3,6 +3,7 @@ package services.CurrencyServices;
 import models.Currency;
 import services.СonverterServices.ConverterService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,8 +19,10 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public List<Currency> addCurrency(String title, int code) {
-        return null;
+    public List<Currency> addCurrency(int code, String title, List<Currency> currencyList) {
+        Currency currency = new Currency(code, title);
+        currencyList.add(currency);
+        return currencyList;
     }
 
     @Override
