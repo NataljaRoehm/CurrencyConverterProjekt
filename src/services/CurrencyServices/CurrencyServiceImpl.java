@@ -30,7 +30,9 @@ public class CurrencyServiceImpl implements CurrencyService {
         for (Currency currency1 : currencyList) {
             if (currency1.equals(currency)) {
                 isPresent = true;
-                System.out.println("Валюта " + currency.getTitle() + " дублируется.");
+                if(currencyList.size() > 0) {
+                    System.out.println("Валюта " + currency.getTitle() + " дублируется.");
+                }
             }
         }
         if (!isPresent) {

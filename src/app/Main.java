@@ -88,24 +88,34 @@ public class Main {
                 if (!currency.getTitle().equals(originalCurrency.getTitle())) {
                     System.out.println("Введите курс покупки  " + currency.getTitle() +
                             " за " + originalCurrency.getTitle());
-                    while (!scanner.hasNextDouble()) {
-                        String error = scanner.nextLine();
-                        System.out.println("Некорректный ввод, введите число: '" + error + "'");
-                        System.out.println("Введите курс покупки:");
+                    double buyingRate = INCORRECT;
+                    while (buyingRate <= 0) {
+                        while (!scanner.hasNextDouble()) {
+                            System.out.println("Некорректный ввод, введите число:");
+                            System.out.println("Введите курс покупки:");
+                        }
+                        buyingRate = scanner.nextDouble();
+                        scanner.nextLine();
+                        if (buyingRate <= 0) {
+                            System.out.println("Некорректный ввод, введите курс покупки:");
+                        }
                     }
-                    double buyingRate = scanner.nextDouble();
-                    scanner.nextLine();
                     System.out.println("Введите курс продажи  " + currency.getTitle() +
                             " за " + originalCurrency.getTitle());
-                    while (!scanner.hasNextDouble()) {
-                        String error = scanner.nextLine();
-                        System.out.println("Некорректный ввод, введите число: '" + error + "'");
-                        System.out.println("Введите курс покупки:");
+
+                    double salesRate = INCORRECT;
+                    while (salesRate <= 0) {
+                        while (!scanner.hasNextDouble()) {
+                            System.out.println("Некорректный ввод, введите число:");
+                            System.out.println("Введите курс продажи:");
+                        }
+                        salesRate = scanner.nextDouble();
+                        scanner.nextLine();
+                        if (salesRate <= 0) {
+                            System.out.println("Некорректный ввод, введите курс продажи:");
+                        }
                     }
-                    double salesRate = scanner.nextDouble();
-                    scanner.nextLine();
                     String key = originalCurrency.getTitle() + currency.getTitle();
-                    System.out.println(key);
                     currencyService.exchangeRates(exchangeRates, key, salesRate, buyingRate);
                 }
             }
@@ -170,12 +180,12 @@ public class Main {
         while (initialAmount <= 0) {
             while (!scanner.hasNextInt()) {
                 System.out.println("Некорректный ввод, введите число:");
-                System.out.println("Введите код валюты:");
+                System.out.println("Введите начальную сумму:");
             }
             initialAmount = scanner.nextInt();
             scanner.nextLine();
             if (initialAmount <= 0) {
-                System.out.println("Некорректный ввод, введите код валюты:");
+                System.out.println("Некорректный ввод, введите начальную сумму:");
             }
         }
         List<Double> results = currencyService.ConverterOfCurrency(exchangeRates, initialAmount,
@@ -184,13 +194,13 @@ public class Main {
         System.out.println("Начальная валюта: " + originalCurrency);
         System.out.println("Начальная сумма: " + initialAmount + " " + originalCurrency);
         System.out.println("Конечная валюта: " + finalCurrency);
-        if(exchangeRate == 0){
+        if (exchangeRate == 0) {
             System.out.println("Курс покупки: " + results.get(1) + " " +
-                    originalCurrency + " за один " +  finalCurrency);
+                    originalCurrency + " за один " + finalCurrency);
             System.out.println("Конечная сумма: " + results.get(0) + " " + finalCurrency);
         } else {
             System.out.println("Курс продажи: " + results.get(1) + " " +
-                    originalCurrency + " за один " +  finalCurrency);
+                    originalCurrency + " за один " + finalCurrency);
             System.out.println("Конечная сумма: " + results.get(0) + " " + finalCurrency);
         }
 
@@ -253,5 +263,4 @@ public class Main {
         }
         return originalCurrency;
     }
-
 }
