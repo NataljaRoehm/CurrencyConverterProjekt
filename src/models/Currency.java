@@ -39,7 +39,7 @@ public class Currency {
 
     @Override
     public String toString() {
-        return "Currency{" +
+        return title + " {" +
                 "code=" + code +
                 ", title='" + title + '\'' +
                 '}';

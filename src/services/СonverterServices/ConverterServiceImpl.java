@@ -1,17 +1,18 @@
 package services.СonverterServices;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-public class ConverterServiceImpl implements ConverterService{
-
+public class ConverterServiceImpl implements ConverterService {
 
     @Override
-    public double ConverterOfCurrency(Double sum, Map<String, ArrayList<Double>> rates, String key, int index) {
+    public List<Double> ConverterOfCurrency(Map<String, ArrayList<Double>> rates, Double sum,
+                                            String key, int index) {
+        List<Double> results = new ArrayList<>();
 
-
-        //System.out.println(rates.get(key));
-
-        return rates.get(key).get(0);
+        results.add(sum / rates.get(key).get(index));
+        results.add(rates.get(key).get(index));
+        return results;
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CurrencyServiceImpl implements CurrencyService {
+
     private ConverterService converterService;
 
     public ConverterService getConverterService() {
@@ -21,8 +22,20 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public void addCurrency(int code, String title, List<Currency> currencyList) {
+        boolean isPresent = false;
         Currency currency = new Currency(code, title);
-        currencyList.add(currency);
+        if (currencyList.size() == 0) {
+            currencyList.add(currency);
+        }
+        for (Currency currency1 : currencyList) {
+            if (currency1.equals(currency)) {
+                isPresent = true;
+                System.out.println("Валюта " + currency.getTitle() + " дублируется.");
+            }
+        }
+        if (!isPresent) {
+            currencyList.add(currency);
+        }
     }
 
     @Override
@@ -35,11 +48,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public double ConverterOfCurrency(Double sum, Map<String, ArrayList<Double>> rates, String key, int index) {
-        index = 0;
-        key = "UsdEur";
-
-        return converterService.ConverterOfCurrency(sum, rates, key, index);
+    public List<Double> ConverterOfCurrency(Map<String, ArrayList<Double>> rates, Double sum,
+                                            String key, int index) {
+        return converterService.ConverterOfCurrency(rates, sum, key, index);
     }
 
 
