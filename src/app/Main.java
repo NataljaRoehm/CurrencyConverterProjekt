@@ -35,9 +35,13 @@ public class Main {
                             currencyService,
                             currencies,
                             scanner);
+                    System.out.println(exchangeRates);
                     break;
                 case CURRENCY_CONVERSION:
-                    System.out.println("CURRENCY_CONVERSION");
+                    CurrencyConversion(exchangeRates,
+                            currencyService,
+                            currencies,
+                            scanner);
                     break;
                 case EXIT:
                     break;
@@ -118,13 +122,51 @@ public class Main {
                 if (!currency.getTitle().equals(originalCurrency.getTitle())) {
                     System.out.println("Введите курс покупки  " +  currency.getTitle() +
                             " за " + originalCurrency.getTitle());
-
+                    while (!scanner.hasNextDouble()) {
+                        String error = scanner.nextLine();
+                        System.out.println("Некорректный ввод, введите число: '" + error + "'");
+                        System.out.println("Введите курс покупки:");
+                    }
+                    double buyingRate = scanner.nextDouble();
+                    scanner.nextLine();
                     System.out.println("Введите курс продажи  " +  currency.getTitle() +
                             " за " + originalCurrency.getTitle());
+                    while (!scanner.hasNextDouble()) {
+                        String error = scanner.nextLine();
+                        System.out.println("Некорректный ввод, введите число: '" + error + "'");
+                        System.out.println("Введите курс покупки:");
+                    }
+                    double salesRate = scanner.nextDouble();
+                    scanner.nextLine();
                     String key = originalCurrency.getTitle() + currency.getTitle();
                     System.out.println(key);
+                    currencyService.exchangeRates(exchangeRates, key, salesRate, buyingRate);
                 }
             }
         }
+    }
+
+    public static void CurrencyConversion(Map<String, ArrayList<Double>> exchangeRates,
+                                          CurrencyService currencyService,
+                                          List<Currency> currencyList,
+                                          Scanner scanner) {
+        System.out.println("Валюты:");
+        for (Currency currency : currencyList) {
+            System.out.print(currency.getTitle() + " ");
+        }
+        System.out.println();
+        System.out.println("Введите исходную валюту");
+        String val = scanner.nextLine();
+
+        double sum = 10;
+
+        String key ="";
+
+        int index = 0;
+
+
+        double sumConv =  currencyService.ConverterOfCurrency(sum, exchangeRates, key, index);
+        System.out.println(sumConv);
+
     }
 }

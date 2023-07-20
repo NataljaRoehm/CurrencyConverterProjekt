@@ -26,18 +26,21 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public void exchangeRates(HashMap<String, ArrayList<Double>> rates, String title,
+    public void exchangeRates(Map<String, ArrayList<Double>> rates, String key,
                               double courseSales, double courseBuying) {
-
+        ArrayList<Double> courses = new ArrayList<>();
+        courses.add(courseBuying);
+        courses.add(courseSales);
+        rates.put(key, courses);
     }
 
     @Override
-    public double converterBuyingRate(String currency, Map<String, Double> buyingRate) {
-        return 0;
+    public double ConverterOfCurrency(Double sum, Map<String, ArrayList<Double>> rates, String key, int index) {
+        index = 0;
+        key = "UsdEur";
+
+        return converterService.ConverterOfCurrency(sum, rates, key, index);
     }
 
-    @Override
-    public double converterSalesRate(String currency, Map<String, Double> salesRate) {
-        return 0;
-    }
+
 }

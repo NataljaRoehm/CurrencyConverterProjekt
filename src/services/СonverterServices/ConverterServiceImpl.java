@@ -1,15 +1,17 @@
 package services.СonverterServices;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ConverterServiceImpl implements ConverterService{
-    @Override
-    public double converterBuyingRate(String currency, Map<String, Double> buyingRate) {
-        return 0;
-    }
+
 
     @Override
-    public double converterSalesRate(String currency, Map<String, Double> salesRate) {
-        return 0;
+    public double ConverterOfCurrency(Double sum, Map<String, ArrayList<Double>> rates, String key, int index) {
+
+
+        //System.out.println(rates.get(key));
+
+        return rates.get(key).get(0);
     }
 }

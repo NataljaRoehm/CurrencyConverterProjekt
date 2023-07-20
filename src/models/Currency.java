@@ -11,6 +11,11 @@ public class Currency {
         this.title = title;
     }
 
+    public Currency(String title) {
+        this.title = title;
+    }
+
+
     public int getCode() {
         return code;
     }
