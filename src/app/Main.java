@@ -82,7 +82,15 @@ public class Main {
                                            CurrencyService currencyService,
                                            List<Currency> currencyList,
                                            Scanner scanner) {
+        if(currencyList.size() <= 1) {
+            System.out.println("Минимальное количество валют 2, добавьте валюту.");
+            return;
+        }
         System.out.println("Загрузка курсов валюты:");
+        if(currencyList.size() <= 1) {
+            System.out.println("Минимальное количество валют 2, добавьте валюту.");
+            return;
+        }
         for (Currency originalCurrency : currencyList) {
             System.out.println("Курсы для исходной валюты " + originalCurrency.getTitle() + " :");
             for (Currency currency : currencyList) {
@@ -131,6 +139,10 @@ public class Main {
                                           Scanner scanner) {
         final int BUY_RATE = 1;
         final int SALE_RATE = 2;
+        if(currencyList.size() <= 1) {
+            System.out.println("Минимальное количество валют 2, добавьте валюту.");
+            return;
+        }
         System.out.println("Валюты:");
         for (Currency currency : currencyList) {
             System.out.print(currency.getTitle() + " ");
