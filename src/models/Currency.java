@@ -40,8 +40,8 @@ public class Currency {
     @Override
     public String toString() {
         return title + " {" +
-                "code=" + code +
-                ", title='" + title + '\'' +
+                "Код: " + code +
+                ", Название: " + title +
                 '}';
     }
 }

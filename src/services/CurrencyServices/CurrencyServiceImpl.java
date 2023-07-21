@@ -26,6 +26,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         Currency currency = new Currency(code, title);
         if (currencyList.size() == 0) {
             currencyList.add(currency);
+            return;
         }
         for (Currency currency1 : currencyList) {
             if (currency1.equals(currency)) {

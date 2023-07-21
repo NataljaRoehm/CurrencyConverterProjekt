@@ -65,6 +65,7 @@ public class Main {
         int code = INCORRECT;
         while (code <= 0) {
             while (!scanner.hasNextInt()) {
+                String error = scanner.nextLine();
                 System.out.println("Некорректный ввод, введите число:");
                 System.out.println("Введите код валюты:");
             }
@@ -91,6 +92,7 @@ public class Main {
                     double buyingRate = INCORRECT;
                     while (buyingRate <= 0) {
                         while (!scanner.hasNextDouble()) {
+                            String error = scanner.nextLine();
                             System.out.println("Некорректный ввод, введите число:");
                             System.out.println("Введите курс покупки:");
                         }
@@ -106,6 +108,7 @@ public class Main {
                     double salesRate = INCORRECT;
                     while (salesRate <= 0) {
                         while (!scanner.hasNextDouble()) {
+                            String error = scanner.nextLine();
                             System.out.println("Некорректный ввод, введите число:");
                             System.out.println("Введите курс продажи:");
                         }
@@ -155,6 +158,7 @@ public class Main {
         int command = INCORRECT;
         while (command != 1 && command != 2) {
             while (!scanner.hasNextInt()) {
+                String error = scanner.nextLine();
                 System.out.println("Некорректный ввод, введите число: ");
                 System.out.println("Выберите курс для конвертации:");
             }
@@ -179,6 +183,7 @@ public class Main {
         System.out.println("Введите начальную сумму:");
         while (initialAmount <= 0) {
             while (!scanner.hasNextInt()) {
+                String error = scanner.nextLine();
                 System.out.println("Некорректный ввод, введите число:");
                 System.out.println("Введите начальную сумму:");
             }
@@ -190,6 +195,7 @@ public class Main {
         }
         List<Double> results = currencyService.ConverterOfCurrency(exchangeRates, initialAmount,
                 key, exchangeRate);
+        double result = results.get(0);
         System.out.println("Результат:");
         System.out.println("Начальная валюта: " + originalCurrency);
         System.out.println("Начальная сумма: " + initialAmount + " " + originalCurrency);
@@ -197,13 +203,11 @@ public class Main {
         if (exchangeRate == 0) {
             System.out.println("Курс покупки: " + results.get(1) + " " +
                     originalCurrency + " за один " + finalCurrency);
-            System.out.println("Конечная сумма: " + results.get(0) + " " + finalCurrency);
         } else {
             System.out.println("Курс продажи: " + results.get(1) + " " +
                     originalCurrency + " за один " + finalCurrency);
-            System.out.printf("Конечная сумма: %.2f %s%n", results.get(0), finalCurrency);
         }
-
+        System.out.printf("Конечная сумма: %.2f %s%n", results.get(0), finalCurrency);
 
     }
 
