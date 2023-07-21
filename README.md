@@ -27,10 +27,8 @@
 
 * `de.ait`
     * `app` - здесь размещается точка входа в приложение (`main`)
-    * `models` - модели предметной области (User, Product, Book,  Film, Music, CashWarrant, DeliveryOffGoods,
-                 Order, Review).    
-    * `services` - бизнес-логика проекта (UserService, ProductService, BookService, FilmService, MusicService, 
-                  OrderService, CashWarrantService,  DeliveryOffGoodsService,  ReviewService). 
+    * `models` - модели предметной области (Currency).    
+    * `services` - бизнес-логика проекта (CurrencyServices, ConverterServices). 
    
 ### Архитектура.
 
@@ -50,7 +48,7 @@
    Main -> CurrencyServices -> ConverterServices 
 2. При использовании программы пользователь может вводить неограниченное количество валют, курсы покупки и продажи. 
  Пользователь может осуществить конвертацию валюты. Для корректного ввода данных осуществляются проверки.
-3. На выходе мыполучаем конечную сумму в валюте  конвертации с указанием курса обмена.
+3. На выходе мы получаем конечную сумму в валюте конвертации с указанием курса обмена.
 
 ### Используемые технологии
 Использование интерфейсов и наследования.
