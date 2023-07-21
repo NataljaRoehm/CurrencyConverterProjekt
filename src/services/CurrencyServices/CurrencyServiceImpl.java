@@ -31,7 +31,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         for (Currency currency1 : currencyList) {
             if (currency1.equals(currency)) {
                 isPresent = true;
-                if(currencyList.size() > 0) {
+                if (currencyList.size() > 0) {
                     System.out.println("Валюта " + currency.getTitle() + " дублируется.");
                 }
             }
@@ -55,6 +55,4 @@ public class CurrencyServiceImpl implements CurrencyService {
                                             String key, int index) {
         return converterService.ConverterOfCurrency(rates, sum, key, index);
     }
-
-
 }
