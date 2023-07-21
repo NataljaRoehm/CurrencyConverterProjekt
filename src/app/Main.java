@@ -201,7 +201,7 @@ public class Main {
         } else {
             System.out.println("Курс продажи: " + results.get(1) + " " +
                     originalCurrency + " за один " + finalCurrency);
-            System.out.println("Конечная сумма: " + results.get(0) + " " + finalCurrency);
+            System.out.printf("Конечная сумма: %.2f %s%n", results.get(0), finalCurrency);
         }
 
 
